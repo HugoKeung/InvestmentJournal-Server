@@ -1,11 +1,17 @@
 package com.portfolio.InvestmentJournalServer.models;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -17,15 +23,21 @@ public class BuyPosition {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	
-	
+	@NotNull
+	@Size(min=1, max=4)
 	private String ticker;
 	
-	@Min(5)
-	private Double price;
+	@NotNull
+	private BigDecimal price;
 	
-	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MMyyyy")
+	
+	
+	//@Past
+	@NotNull
+	//@DateTimeFormat(pattern="yyyy-MM-dd")
 	private String date;
 	
+	@NotNull
 	@Column(name="buy_reason")
 	private String buyReason;
 	public String getTicker() {
@@ -34,10 +46,10 @@ public class BuyPosition {
 	public void setTicker(String ticker) {
 		this.ticker = ticker;
 	}
-	public Double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(Double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	public String getDate() {

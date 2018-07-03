@@ -1,13 +1,18 @@
 package com.portfolio.InvestmentJournalServer.models;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -18,15 +23,19 @@ public class SellPosition {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	@Size(min=1, max=4)
 	private String ticker;
 	
-	@Min(5)
-	private String price;
+	@NotNull
+	private BigDecimal price;
 	
-//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
+	@NotNull
+//	@Past
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private String date;
 	
+	@NotNull
 	@Column(name="sell_reason")
 	private String sellReason;
 	public String getTicker() {
@@ -35,13 +44,14 @@ public class SellPosition {
 	public void setTicker(String ticker) {
 		this.ticker = ticker;
 	}
-	public String getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	public String getDate() {
+		
 		return date;
 	}
 	public void setDate(String date) {
