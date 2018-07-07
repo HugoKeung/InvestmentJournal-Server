@@ -42,6 +42,11 @@ public class BuyPositionController {
 		}
 	}
 	
+	@GetMapping("/tickers")
+	public String[] findCurrentTickers(){
+		return buyPositionRepository.findCurrentTickers();
+	}
+	
 	@GetMapping("/{id}")
 	public BuyPosition get(@PathVariable("id") long id) {
 		return buyPositionRepository.getOne(id);

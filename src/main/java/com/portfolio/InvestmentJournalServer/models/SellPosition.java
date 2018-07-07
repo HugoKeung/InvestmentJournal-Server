@@ -31,6 +31,9 @@ public class SellPosition {
 	private BigDecimal price;
 	
 	@NotNull
+	private int shares;
+	
+	@NotNull
 //	@Past
 //	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private String date;
@@ -49,6 +52,12 @@ public class SellPosition {
 	}
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	public int getShares() {
+		return shares;
+	}
+	public void setShares(int shares) {
+		this.shares = shares;
 	}
 	public String getDate() {
 		
