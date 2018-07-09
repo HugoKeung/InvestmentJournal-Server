@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portfolio.InvestmentJournalServer.models.SellPosition;
-import com.portfolio.InvestmentJournalServer.repositories.SellPositionRepository;
+import com.portfolio.InvestmentJournalServer.services.SellPositionService;
 
 @RestController
 @RequestMapping("api/positions/sell")
@@ -24,11 +24,11 @@ import com.portfolio.InvestmentJournalServer.repositories.SellPositionRepository
 public class SellPositionController {
 	
 	@Autowired
-	private SellPositionRepository sellPositionRepository;
+	private SellPositionService sellPositionService;
 	
 	@GetMapping
 	public List<SellPosition> list(){
-		return sellPositionRepository.findAll();
+		return sellPositionService.findAll();
 	}
 	
 	@PostMapping
@@ -39,7 +39,7 @@ public class SellPositionController {
 			return result.getFieldError().getField();
 		}
 		else {
-			sellPositionRepository.save(sellPosition);
+			sellPositionService.save(sellPosition);
 			return "";
 		}
 		
@@ -47,7 +47,7 @@ public class SellPositionController {
 	
 	@GetMapping("/{id}")
 	public SellPosition get(@PathVariable("id") long id) {
-		return sellPositionRepository.getOne(id);
+		return sellPositionService.getOne(id);
 	}
 
 	

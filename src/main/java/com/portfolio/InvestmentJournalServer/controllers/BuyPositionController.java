@@ -16,19 +16,48 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portfolio.InvestmentJournalServer.models.BuyPosition;
-import com.portfolio.InvestmentJournalServer.repositories.BuyPositionRepository;
+import com.portfolio.InvestmentJournalServer.models.CurrentPosition;
+import com.portfolio.InvestmentJournalServer.services.BuyPositionService;
+import com.portfolio.InvestmentJournalServer.services.CurrentPositionService;
 
 @RestController
 @RequestMapping("api/positions/buy")
 public class BuyPositionController {
 	
 	@Autowired
-	private BuyPositionRepository buyPositionRepository;
+	private CurrentPositionService currentPositionService;
 	
-	@GetMapping
-	public List<BuyPosition> list(){
-		return buyPositionRepository.findAll();
+	@Autowired
+	private BuyPositionService buyPositionService;
+
+	
+//	@GetMapping
+//	public List<BuyPosition> list(){
+////		List<BuyPosition> buyList =  buyPositionRepository.findAll();
+////		List<BuyPosition> buyFinal = new ArrayList();
+////			for(BuyPosition buy: buyList) {
+////				buy.setShares(currentPositionService.currentShares("MU"));
+////			//	
+////				buyFinal.add(buy);
+////			}
+////			return buyFinal;
+////		currentPositionService.currentShares("MU");
+////		return buyPositionRepository.findAll();
+//		
+//		return currentPositionService.getAll();
+//	}
+	
+	@GetMapping("/current")
+	public List<CurrentPosition> currentList(){
+		return currentPositionService.getAll();
 	}
+	
+	@GetMapping("/ticker/{ticker}")
+	public List<BuyPosition> positionList(@PathVariable("ticker") String ticker){
+
+		return currentPositionService.getBuyPosition(ticker);
+	}
+	
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
@@ -37,19 +66,19 @@ public class BuyPositionController {
 			return result.getFieldError().getField();
 		}
 		else {
-			buyPositionRepository.save(buyPosition);
+			buyPositionService.saveBuyPosition(buyPosition);
 			return "";
 		}
 	}
 	
 	@GetMapping("/tickers")
 	public String[] findCurrentTickers(){
-		return buyPositionRepository.findCurrentTickers();
+		return currentPositionService.getCurrentTickers();
 	}
 	
 	@GetMapping("/{id}")
 	public BuyPosition get(@PathVariable("id") long id) {
-		return buyPositionRepository.getOne(id);
+		return buyPositionService.singleBuyPosition(id);
 	}
 
 }
