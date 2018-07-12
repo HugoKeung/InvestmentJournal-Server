@@ -36,27 +36,27 @@ public class CurrentPositionService {
 	
 	public List<CurrentPosition> getAll(){
 	
-	List<BuyPosition> buyList =  buyRepository.findAllByOrderByDateDesc();
+		List<BuyPosition> buyList =  buyRepository.findAllByOrderByDateDesc();
 	
-	List<CurrentPosition> currentList = new ArrayList<>();
+		List<CurrentPosition> currentList = new ArrayList<>();
 	//prevent duplicate ticker;
-	List<String> matchingList = new ArrayList<>();
+		List<String> matchingList = new ArrayList<>();
 	
-		for(BuyPosition buy: buyList) {
-			String ticker = buy.getTicker();
-		
-			String date = buy.getDate();
-			int shares = currentShares(ticker);
-			BigDecimal buyPrice = buyRepository.buyPrice(ticker);
-			BigDecimal sellPrice = sellRepository.sellPrice(ticker);
-	
-			
-			if (!matchingList.contains(ticker) && shares >0){
-				currentList.add(new CurrentPosition(ticker, shares, date, buyPrice, sellPrice));
-				matchingList.add(ticker);
-			}
+			for(BuyPosition buy: buyList) {
+				String ticker = buy.getTicker();
 
-		}
+				String date = buy.getDate();
+				int shares = currentShares(ticker);
+				BigDecimal buyPrice = buyRepository.buyPrice(ticker);
+				BigDecimal sellPrice = sellRepository.sellPrice(ticker);
+
+
+				if (!matchingList.contains(ticker) && shares >0){
+					currentList.add(new CurrentPosition(ticker, shares, date, buyPrice, sellPrice));
+					matchingList.add(ticker);
+				}
+
+			}
 
 		return currentList;
 	
