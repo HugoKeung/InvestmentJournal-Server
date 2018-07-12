@@ -30,22 +30,7 @@ public class BuyPositionController {
 	@Autowired
 	private BuyPositionService buyPositionService;
 
-	
-//	@GetMapping
-//	public List<BuyPosition> list(){
-////		List<BuyPosition> buyList =  buyPositionRepository.findAll();
-////		List<BuyPosition> buyFinal = new ArrayList();
-////			for(BuyPosition buy: buyList) {
-////				buy.setShares(currentPositionService.currentShares("MU"));
-////			//	
-////				buyFinal.add(buy);
-////			}
-////			return buyFinal;
-////		currentPositionService.currentShares("MU");
-////		return buyPositionRepository.findAll();
-//		
-//		return currentPositionService.getAll();
-//	}
+
 	
 	@GetMapping("/current")
 	public List<CurrentPosition> currentList(){
