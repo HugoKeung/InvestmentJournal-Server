@@ -66,6 +66,7 @@ public class CurrentPositionService {
 		return buyRepository.findCurrentTickers();
 	}
 	
+	
 	public List<BuyPosition> getBuyPosition(String ticker){
 		return buyRepository.findByTicker(ticker);
 		

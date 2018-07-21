@@ -1,5 +1,7 @@
 package com.portfolio.InvestmentJournalServer.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +21,9 @@ public class BuyPositionService {
 	public void saveBuyPosition(BuyPosition buyPosition) {
 		buyRepository.save(buyPosition);
 	}
+	
+	public List<BuyPosition> getAll(){
+		return buyRepository.findAll();
+	}
 }
+

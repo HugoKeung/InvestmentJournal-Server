@@ -8,6 +8,8 @@ public class CurrentPosition {
 	private int shares;
 	private String date;
 	private BigDecimal buyPrice;
+	
+//Sell price is to show position already sold.
 	private BigDecimal sellPrice;
 
 

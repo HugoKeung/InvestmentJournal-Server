@@ -30,34 +30,8 @@ public class BuyPositionController {
 	@Autowired
 	private BuyPositionService buyPositionService;
 
-	
-//	@GetMapping
-//	public List<BuyPosition> list(){
-////		List<BuyPosition> buyList =  buyPositionRepository.findAll();
-////		List<BuyPosition> buyFinal = new ArrayList();
-////			for(BuyPosition buy: buyList) {
-////				buy.setShares(currentPositionService.currentShares("MU"));
-////			//	
-////				buyFinal.add(buy);
-////			}
-////			return buyFinal;
-////		currentPositionService.currentShares("MU");
-////		return buyPositionRepository.findAll();
-//		
-//		return currentPositionService.getAll();
-//	}
-	
-	@GetMapping("/current")
-	public List<CurrentPosition> currentList(){
-		return currentPositionService.getAll();
-	}
-	
-	@GetMapping("/ticker/{ticker}")
-	public List<BuyPosition> positionList(@PathVariable("ticker") String ticker){
 
-		return currentPositionService.getBuyPosition(ticker);
-	}
-	
+
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
@@ -71,11 +45,7 @@ public class BuyPositionController {
 		}
 	}
 	
-	@GetMapping("/tickers")
-	public String[] findCurrentTickers(){
-		return currentPositionService.getCurrentTickers();
-	}
-	
+
 	@GetMapping("/{id}")
 	public BuyPosition get(@PathVariable("id") long id) {
 		return buyPositionService.singleBuyPosition(id);

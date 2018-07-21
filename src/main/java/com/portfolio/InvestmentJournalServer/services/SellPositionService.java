@@ -26,4 +26,8 @@ public class SellPositionService {
 		return sellRepository.getOne(id);
 	}
 	
+	public List<SellPosition> getAll(){
+		return sellRepository.findAll();
+	}
+	
 }
