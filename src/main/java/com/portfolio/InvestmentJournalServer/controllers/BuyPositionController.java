@@ -30,6 +30,18 @@ public class BuyPositionController {
 	@Autowired
 	private BuyPositionService buyPositionService;
 
+<<<<<<< HEAD
+=======
+
+	
+	@GetMapping("/current")
+	public List<CurrentPosition> currentList(){
+		return currentPositionService.getAll();
+	}
+	
+	@GetMapping("/ticker/{ticker}")
+	public List<BuyPosition> positionList(@PathVariable("ticker") String ticker){
+>>>>>>> 03e3035bed9377dbbbd2be6f1b6426ccf5294a27
 
 
 	
