@@ -1,6 +1,5 @@
 package com.portfolio.InvestmentJournalServer.controllers;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -16,33 +15,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portfolio.InvestmentJournalServer.models.BuyPosition;
-import com.portfolio.InvestmentJournalServer.models.CurrentPosition;
+
 import com.portfolio.InvestmentJournalServer.services.BuyPositionService;
-import com.portfolio.InvestmentJournalServer.services.CurrentPositionService;
+
 
 @RestController
 @RequestMapping("api/positions/buy")
 public class BuyPositionController {
 	
-	@Autowired
-	private CurrentPositionService currentPositionService;
 	
 	@Autowired
 	private BuyPositionService buyPositionService;
-
-<<<<<<< HEAD
-=======
-
-	
-	@GetMapping("/current")
-	public List<CurrentPosition> currentList(){
-		return currentPositionService.getAll();
-	}
-	
-	@GetMapping("/ticker/{ticker}")
-	public List<BuyPosition> positionList(@PathVariable("ticker") String ticker){
->>>>>>> 03e3035bed9377dbbbd2be6f1b6426ccf5294a27
-
 
 	
 	@PostMapping
