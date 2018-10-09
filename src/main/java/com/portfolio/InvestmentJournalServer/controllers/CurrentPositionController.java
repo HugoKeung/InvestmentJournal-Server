@@ -1,5 +1,7 @@
 package com.portfolio.InvestmentJournalServer.controllers;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class CurrentPositionController {
 	@GetMapping
 	public List<CurrentPosition> currentList(){
 		return currentPositionService.getAll();
+
+		
 	}
 	
 	@GetMapping("/tickers")
