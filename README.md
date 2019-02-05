@@ -1,6 +1,7 @@
 # InvestmentJournal-Server
 
 This is the back-end API end-point provider for the Investment Journal project.
+(front end can be found here: https://github.com/HugoKeung/InvestmentJournal )
 
 Data is pulled from a SQLite database, using SpringBoot JPA. 
 
