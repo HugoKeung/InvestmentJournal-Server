@@ -1,5 +1,6 @@
 package com.portfolio.InvestmentJournalServer.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -33,12 +34,15 @@ public class SellPositionController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
-	public String createSellPosition(@Valid @RequestBody SellPosition sellPosition, BindingResult result) {
+	public String createSellPosition(@Valid @RequestBody SellPosition sellPosition, BindingResult result, Principal principal) {
+		String principal_id = principal.getName();
+		String user_id = principal_id.substring(principal_id.lastIndexOf("|")+1);
 		if(result.hasErrors()) {
 	
 			return result.getFieldError().getField();
 		}
 		else {
+			sellPosition.setUser_id(user_id);
 			sellPositionService.save(sellPosition);
 			return "";
 		}

@@ -24,20 +24,22 @@ public class AllPositionService {
 		this.sellRepository = sellRepository;;
 	}
 	
-	public List<SimplePosition> getAll(){
+	public List<SimplePosition> getAll(String userId){
 		List<SimplePosition> list = new ArrayList<>();
 		List<BuyPosition> buyList = buyRepository.findAll();
 		List<SellPosition> sellList = sellRepository.findAll();
 		
 		for (BuyPosition pos: buyList) {
-			//sel flag = true, because true is flaag for Buy
-			SimplePosition buy = new SimplePosition(pos.getId(), pos.getTicker(), pos.getDate(), pos.getShares(), pos.getPrice(), "buy");
-			list.add(buy);
+			if(pos.getUser_id().equals(userId)) {
+				SimplePosition buy = new SimplePosition(pos.getId(), pos.getTicker(), pos.getDate(), pos.getShares(), pos.getPrice(), "buy", pos.getUser_id());
+				list.add(buy);
+			}
 		}
 		for (SellPosition pos: sellList) {
-			//sel flag = true, because true is flaag for Buy
-			SimplePosition sell = new SimplePosition(pos.getId(), pos.getTicker(), pos.getDate(), pos.getShares(), pos.getPrice(), "sell");
-			list.add(sell);
+			if(pos.getUser_id().equals(userId)) {
+				SimplePosition sell = new SimplePosition(pos.getId(), pos.getTicker(), pos.getDate(), pos.getShares(), pos.getPrice(), "sell", pos.getUser_id());
+				list.add(sell);
+			}
 		}
 		
 		return list;

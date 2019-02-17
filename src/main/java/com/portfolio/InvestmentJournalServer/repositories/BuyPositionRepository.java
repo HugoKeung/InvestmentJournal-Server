@@ -10,8 +10,8 @@ import com.portfolio.InvestmentJournalServer.models.BuyPosition;
 
 public interface BuyPositionRepository extends JpaRepository<BuyPosition, Long> {
 	
-	@Query("select b.ticker from BuyPosition b")
-	public String[] findCurrentTickers();
+	@Query("select b.ticker from BuyPosition b where b.user_id = ?#{[0]}")
+	public String[] findCurrentTickers(String userId);
 	
 	@Query("select coalesce(sum(b.shares), 0) from BuyPosition b where b.ticker = ?#{[0]}")
 	public int findNumberOfShares(String ticker);

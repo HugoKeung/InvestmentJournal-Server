@@ -40,8 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .forRS256(apiAudience, issuer)
                 .configure(http)
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/positions/current").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/positions/all").authenticated()
+                .antMatchers(HttpMethod.GET, "/api/positions/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/positions/**").authenticated()
                 .antMatchers(HttpMethod.GET, "/api/positions/buy/**", "/api/positions/sell/**").hasAuthority("read:history");
                 ;
     }

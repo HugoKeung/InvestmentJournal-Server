@@ -2,6 +2,8 @@ package com.portfolio.InvestmentJournalServer.models;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+
 public class CurrentPosition {
 	
 	private String ticker;
@@ -12,7 +14,15 @@ public class CurrentPosition {
 //Sell price is to show position already sold.
 	private BigDecimal sellPrice;
 
-
+	@NotNull
+	private String user_id;
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public BigDecimal getSellPrice() {
 		return sellPrice;
 	}
@@ -33,11 +43,12 @@ public class CurrentPosition {
 	}
 
 
-	public CurrentPosition(String ticker, int shares, String date, BigDecimal buyPrice, BigDecimal sellPrice){
+	public CurrentPosition(String ticker, int shares, String date, BigDecimal buyPrice, BigDecimal sellPrice, String user_id){
 		this.ticker = ticker;
 		this.shares = shares;
 		this.date = date;
 		this.buyPrice = buyPrice;
+		this.user_id = user_id;
 	}
 	
 	

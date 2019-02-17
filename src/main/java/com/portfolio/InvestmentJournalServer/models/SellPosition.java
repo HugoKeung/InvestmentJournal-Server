@@ -41,6 +41,16 @@ public class SellPosition {
 	@NotNull
 	@Column(name="sell_reason")
 	private String sellReason;
+	
+	@NotNull
+	private String user_id;
+	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public String getTicker() {
 		return ticker;
 	}

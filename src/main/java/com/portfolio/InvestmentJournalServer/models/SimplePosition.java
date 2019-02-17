@@ -2,6 +2,8 @@ package com.portfolio.InvestmentJournalServer.models;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.NotNull;
+
 public class SimplePosition {
 
 	//id of the original table. this is needed to retrieve data and show more detail
@@ -15,16 +17,25 @@ public class SimplePosition {
 
 
 	private String flag;
+	@NotNull
+	private String user_id;
 	
-	public SimplePosition(long id, String ticker, String date, int shares, BigDecimal price, String flag) {
+
+	public SimplePosition(long id, String ticker, String date, int shares, BigDecimal price, String flag, String user_id) {
 		this.id = id;
 		this.ticker = ticker;
 		this.date = date;
 		this.shares = shares;
 		this.price = price;
 		this.flag = flag;
+		this.user_id = user_id;
 	}
-
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public String getTicker() {
 		return ticker;
 	}
