@@ -35,9 +35,9 @@ public class CurrentPositionService {
 	
 	
 	public List<CurrentPosition> getAll(String userId){
-	
+
 		List<BuyPosition> buyList =  buyRepository.findAllByOrderByDateDesc();
-	
+
 		List<CurrentPosition> currentList = new ArrayList<>();
 	//prevent duplicate ticker;
 		List<String> matchingList = new ArrayList<>();
@@ -49,7 +49,7 @@ public class CurrentPositionService {
 				int shares = currentShares(ticker);
 				BigDecimal buyPrice = buyRepository.buyPrice(ticker);
 				BigDecimal sellPrice = sellRepository.sellPrice(ticker);
-				String user_id = buy.getUser_id();
+				String user_id = buy.getUserId();
 
 
 				if (!matchingList.contains(ticker) && shares >0 && user_id.equals(userId)){
@@ -58,18 +58,20 @@ public class CurrentPositionService {
 				}
 
 			}
-
+		
 		return currentList;
 	
 	}
 	
 	public String[] getCurrentTickers(String userId) {
 		return buyRepository.findCurrentTickers(userId);
+
 	}
 	
 	
-	public List<BuyPosition> getBuyPosition(String ticker){
-		return buyRepository.findByTicker(ticker);
+	public List<BuyPosition> getBuyPositions(String ticker, String userId){
+
+		return buyRepository.findByTickerAndUserId(ticker, userId);
 		
 	}
 	

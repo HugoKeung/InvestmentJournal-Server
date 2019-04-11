@@ -15,13 +15,13 @@ public class CurrentPosition {
 	private BigDecimal sellPrice;
 
 	@NotNull
-	private String user_id;
+	private String userId;
 	
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public BigDecimal getSellPrice() {
 		return sellPrice;
@@ -48,7 +48,7 @@ public class CurrentPosition {
 		this.shares = shares;
 		this.date = date;
 		this.buyPrice = buyPrice;
-		this.user_id = user_id;
+		this.userId = user_id;
 	}
 	
 	

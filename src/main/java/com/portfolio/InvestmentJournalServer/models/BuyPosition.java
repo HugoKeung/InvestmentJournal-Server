@@ -1,21 +1,19 @@
 package com.portfolio.InvestmentJournalServer.models;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity 
+@Table(name="Buy_Position")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class BuyPosition {
 	
@@ -55,13 +53,13 @@ public class BuyPosition {
 	private String threat;
 	
 	@NotNull
-	private String user_id;
+	private String userId;
 	
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	public String getStory() {

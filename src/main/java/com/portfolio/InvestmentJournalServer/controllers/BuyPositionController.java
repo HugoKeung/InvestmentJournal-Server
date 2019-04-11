@@ -40,22 +40,34 @@ public class BuyPositionController {
 //		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //		String principaal = authentication.getPrincipal().toString();
 //		String user_id = principaal.substring(principaal.lastIndexOf("|")+1);
-		
+
 
 		if(result.hasErrors()) {
+			System.out.println("save buy psotition has error");
+			System.out.println(result);
 			return result.getFieldError().getField();
 		}
 		else {
-			buyPosition.setUser_id(user_id);
+			System.out.println("save buy position");
+			buyPosition.setUserId(user_id);
 			buyPositionService.saveBuyPosition(buyPosition);
 			return "";
 		}
 	}
 	
-
+//TODO: Test below function
 	@GetMapping("/{id}")
-	public BuyPosition get(@PathVariable("id") long id) {
-		return buyPositionService.singleBuyPosition(id);
+	public BuyPosition get(@PathVariable("id") long id, Principal principal) {
+		String principal_id = principal.getName();
+		String user_id = principal_id.substring(principal_id.lastIndexOf("|")+1);
+		
+		BuyPosition request = buyPositionService.singleBuyPosition(id);
+		
+		if (request.getUserId().equals(user_id)){
+			return request;
+		}
+		else return null;
+
 	}
 
 }

@@ -27,11 +27,7 @@ public class SellPositionController {
 	@Autowired
 	private SellPositionService sellPositionService;
 	
-	@GetMapping
-	public List<SellPosition> list(){
-		return sellPositionService.findAll();
-	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
 	public String createSellPosition(@Valid @RequestBody SellPosition sellPosition, BindingResult result, Principal principal) {
@@ -50,8 +46,16 @@ public class SellPositionController {
 	}
 	
 	@GetMapping("/{id}")
-	public SellPosition get(@PathVariable("id") long id) {
-		return sellPositionService.getOne(id);
+	public SellPosition get(@PathVariable("id") long id, Principal principal) {
+		String principal_id = principal.getName();
+		String user_id = principal_id.substring(principal_id.lastIndexOf("|")+1);
+		
+		SellPosition request = sellPositionService.getOne(id);
+		
+		if (request.getUserId().equals(user_id)) {
+			return request;
+		}
+		else return null;
 	}
 
 	

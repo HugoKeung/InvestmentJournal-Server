@@ -38,6 +38,7 @@ public class CurrentPositionController {
 		
 	}
 	
+	//get list of tickers (only) of the user
 	@GetMapping("/tickers")
 	public String[] findCurrentTickers(Principal principal){
 		String principal_id = principal.getName();
@@ -45,10 +46,14 @@ public class CurrentPositionController {
 		
 		return currentPositionService.getCurrentTickers(user_id);
 	}
+	
+	//get detail associated with the ticker of user
 	@GetMapping("/ticker/{ticker}")
-	public List<BuyPosition> positionList(@PathVariable("ticker") String ticker){
-
-		return currentPositionService.getBuyPosition(ticker);
+	public List<BuyPosition> positionList(@PathVariable("ticker") String ticker, Principal principal){
+		String principal_id = principal.getName();
+		String user_id = principal_id.substring(principal_id.lastIndexOf("|")+1);
+		
+		return currentPositionService.getBuyPositions(ticker, user_id);
 	}
 	
 }

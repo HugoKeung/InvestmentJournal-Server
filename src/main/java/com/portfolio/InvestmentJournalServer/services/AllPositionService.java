@@ -30,14 +30,14 @@ public class AllPositionService {
 		List<SellPosition> sellList = sellRepository.findAll();
 		
 		for (BuyPosition pos: buyList) {
-			if(pos.getUser_id().equals(userId)) {
-				SimplePosition buy = new SimplePosition(pos.getId(), pos.getTicker(), pos.getDate(), pos.getShares(), pos.getPrice(), "buy", pos.getUser_id());
+			if(pos.getUserId().equals(userId)) {
+				SimplePosition buy = new SimplePosition(pos.getId(), pos.getTicker(), pos.getDate(), pos.getShares(), pos.getPrice(), "buy", pos.getUserId());
 				list.add(buy);
 			}
 		}
 		for (SellPosition pos: sellList) {
-			if(pos.getUser_id().equals(userId)) {
-				SimplePosition sell = new SimplePosition(pos.getId(), pos.getTicker(), pos.getDate(), pos.getShares(), pos.getPrice(), "sell", pos.getUser_id());
+			if(pos.getUserId().equals(userId)) {
+				SimplePosition sell = new SimplePosition(pos.getId(), pos.getTicker(), pos.getDate(), pos.getShares(), pos.getPrice(), "sell", pos.getUserId());
 				list.add(sell);
 			}
 		}

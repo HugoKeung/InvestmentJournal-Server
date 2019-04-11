@@ -19,6 +19,7 @@ public class BuyPositionService {
 	}
 	
 	public void saveBuyPosition(BuyPosition buyPosition) {
+
 		buyRepository.save(buyPosition);
 	}
 	
